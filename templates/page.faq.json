@@ -226,9 +226,9 @@
         "q5": {
           "type": "collapsible_row",
           "settings": {
-            "heading": "Do you speak Spanish? / ¿Habláis español?",
+            "heading": "Can the party be in Spanish?",
             "icon": "chat_bubble",
-            "row_content": "<p>Yes – just let us know when you book. / Sí, indícalo al hacer la reserva.</p>"
+            "row_content": "<p>Yes – we run parties in English or Spanish. Just let us know when you book.</p>"
           }
         }
       },
