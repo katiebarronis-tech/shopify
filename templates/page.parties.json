@@ -230,7 +230,7 @@
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>Pick your date and tell us a little about the party – we'll confirm availability within 24 hours.</p>",
+            "text": "<p>Pick an available date and session, add your party details and pay securely to reserve it.</p>",
             "text_style": "body"
           }
         },
