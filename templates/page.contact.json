@@ -3,9 +3,9 @@
     "form": {
       "type": "party-booking-form",
       "settings": {
-        "heading": "Book a charm bar party",
+        "heading": "Party enquiries",
         "heading_size": "h1",
-        "intro": "<p>Tell us about your celebration and we'll get back to you within 24 hours to confirm availability. Parties last 90 minutes and start from €360 for up to 8 guests, plus €45 per extra guest.</p>",
+        "intro": "<p>Planning a party for more than 12 guests, or have a question before booking? Tell us about your celebration and we'll get back to you within 24 hours.</p>",
         "base_price": 360,
         "included_guests": 8,
         "extra_guest_price": 45,

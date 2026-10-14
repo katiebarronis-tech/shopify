@@ -30,10 +30,10 @@
           "type": "buttons",
           "settings": {
             "button_label_1": "Book a party",
-            "button_link_1": "shopify://pages/contact",
+            "button_link_1": "shopify://pages/book-a-party",
             "button_style_secondary_1": false,
             "button_label_2": "Shop charms",
-            "button_link_2": "shopify://collections/all",
+            "button_link_2": "shopify://collections/shop",
             "button_style_secondary_2": true
           }
         }
@@ -160,7 +160,7 @@
         "description": "",
         "show_description": false,
         "description_style": "body",
-        "collection": "all",
+        "collection": "shop",
         "products_to_show": 8,
         "columns_desktop": 4,
         "color_scheme": "scheme-1",
@@ -209,7 +209,7 @@
           "type": "button",
           "settings": {
             "button_label": "Enquire now",
-            "button_link": "shopify://pages/contact",
+            "button_link": "shopify://pages/book-a-party",
             "button_style_secondary": false
           }
         }

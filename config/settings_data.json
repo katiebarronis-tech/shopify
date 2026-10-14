@@ -11,7 +11,7 @@
   "current": "Dawn",
   "presets": {
     "Dawn": {
-      "logo_width": 220,
+      "logo_width": 110,
       "customer_account_menu": "customer-account-main-menu",
       "color_schemes": {
         "scheme-1": {
@@ -200,7 +200,7 @@
           }
         }
       },
-      "logo": "shopify://shop_images/mb-logo.png",
+      "logo": "shopify://shop_images/mb-logo-circle.png",
       "favicon": "shopify://shop_images/mb-favicon.png"
     }
   }

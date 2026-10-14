@@ -430,6 +430,31 @@
       "required_note": "Los campos marcados con * son obligatorios.",
       "send": "Enviar solicitud de reserva",
       "success": "¡Gracias! Hemos recibido tu solicitud y te contactaremos en 24 horas para confirmar la disponibilidad."
+    },
+    "party_checkout": {
+      "not_configured": "La reserva online aún no está configurada: elige los productos de fiesta en el editor del tema.",
+      "address": "Dirección de la fiesta",
+      "phone_hint": "Para poder contactarte sobre la fiesta",
+      "party_line": "Fiesta charm bar (hasta {{ guests }} invitados)",
+      "extra_line": "[count] invitados adicionales × [price]",
+      "total": "Total",
+      "large_group": "Para más de 12 invitados, envíanos una consulta y te prepararemos un presupuesto a medida.",
+      "large_group_button": "Enviar una consulta",
+      "confirm_note": "Tu fecha queda reservada en cuanto se completa el pago. Recibirás un correo de confirmación y te contactaremos para cerrar los detalles.",
+      "error": "Lo sentimos, algo ha fallado. Inténtalo de nuevo o envíanos una consulta.",
+      "required_error": "Rellena todos los campos marcados con *.",
+      "choose_date": "Elige una fecha en el calendario.",
+      "date_taken": "Lo sentimos, esa fecha se acaba de reservar. Elige otra fecha.",
+      "submit": "Continuar al pago",
+      "previous_month": "Mes anterior",
+      "next_month": "Mes siguiente",
+      "available": "Disponible",
+      "booked": "Reservado",
+      "selected_date": "Seleccionada: [date]",
+      "session": "Sesión",
+      "morning": "Mañana",
+      "afternoon": "Tarde",
+      "choose_session": "Elige una sesión de mañana o de tarde."
     }
   },
   "localization": {

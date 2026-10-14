@@ -1,0 +1,748 @@
+{{ 'section-contact-form.css' | asset_url | stylesheet_tag }}
+{{ 'party-booking.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .booking__summary-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 0.4rem 0;
+    text-align: left;
+  }
+
+  .booking__summary-row--total {
+    border-top: 0.1rem solid rgba(var(--color-foreground), 0.15);
+    font-family: var(--font-heading-family);
+    font-size: calc(var(--font-heading-scale) * 2.4rem);
+    margin-top: 1rem;
+    padding-top: 1rem;
+  }
+
+  .booking__error {
+    color: rgb(var(--color-foreground));
+    font-weight: 600;
+    margin: 0 0 2rem;
+    text-align: center;
+  }
+
+  .booking__large-group {
+    text-align: center;
+  }
+
+  .booking__label {
+    display: block;
+    font-size: 1.4rem;
+    letter-spacing: 0.04rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .booking-calendar {
+    border: var(--inputs-border-width) solid rgba(var(--color-foreground), var(--inputs-border-opacity));
+    border-radius: var(--inputs-radius);
+    padding: 1.6rem;
+  }
+
+  .booking-calendar__header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.2rem;
+  }
+
+  .booking-calendar__month {
+    font-family: var(--font-heading-family);
+    font-size: calc(var(--font-heading-scale) * 2rem);
+    text-transform: capitalize;
+  }
+
+  .booking-calendar__nav {
+    background: none;
+    border: 0;
+    color: rgb(var(--color-foreground));
+    cursor: pointer;
+    font-size: 2.6rem;
+    line-height: 1;
+    padding: 0.4rem 1.2rem;
+  }
+
+  .booking-calendar__nav:disabled {
+    cursor: default;
+    opacity: 0.25;
+  }
+
+  .booking-calendar__grid {
+    display: grid;
+    gap: 0.4rem;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+  }
+
+  .booking-calendar__weekday {
+    font-size: 1.2rem;
+    letter-spacing: 0.06rem;
+    opacity: 0.7;
+    padding: 0.4rem 0;
+    text-transform: uppercase;
+  }
+
+  .booking-calendar__day {
+    aspect-ratio: 1;
+    background: rgba(var(--color-foreground), 0.06);
+    border: 0.1rem solid transparent;
+    border-radius: 50%;
+    color: rgb(var(--color-foreground));
+    cursor: pointer;
+    font-family: var(--font-body-family);
+    font-size: 1.5rem;
+    max-width: 4.8rem;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+  }
+
+  .booking-calendar__day:hover:not(:disabled) {
+    border-color: rgb(var(--color-foreground));
+  }
+
+  .booking-calendar__day:disabled {
+    background: none;
+    cursor: default;
+    opacity: 0.3;
+  }
+
+  .booking-calendar__day--booked:disabled {
+    opacity: 0.45;
+    text-decoration: line-through;
+  }
+
+  .booking-calendar__day[aria-pressed='true'] {
+    background: rgb(var(--color-button));
+    color: rgb(var(--color-button-text));
+  }
+
+  .booking-calendar__legend {
+    display: flex;
+    font-size: 1.3rem;
+    gap: 2rem;
+    justify-content: center;
+    margin-top: 1.2rem;
+    opacity: 0.8;
+  }
+
+  .booking-calendar__swatch {
+    background: rgba(var(--color-foreground), 0.06);
+    border-radius: 50%;
+    display: inline-block;
+    height: 1.2rem;
+    margin-right: 0.6rem;
+    vertical-align: middle;
+    width: 1.2rem;
+  }
+
+  .booking-sessions {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .booking-sessions__option {
+    background: rgb(var(--color-background));
+    border: var(--inputs-border-width) solid rgba(var(--color-foreground), var(--inputs-border-opacity));
+    border-radius: var(--buttons-radius);
+    color: rgb(var(--color-foreground));
+    cursor: pointer;
+    font-family: var(--font-body-family);
+    font-size: 1.5rem;
+    min-height: 4.6rem;
+  }
+
+  .booking-sessions__option[aria-pressed='true'] {
+    background: rgb(var(--color-button));
+    border-color: rgb(var(--color-button));
+    color: rgb(var(--color-button-text));
+  }
+
+  .booking-sessions__option:disabled {
+    cursor: default;
+    opacity: 0.4;
+    text-decoration: line-through;
+  }
+
+  .booking-calendar__swatch--booked {
+    background: none;
+    border: 0.1rem dashed rgba(var(--color-foreground), 0.45);
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign party_collection = section.settings.party_collection
+  assign party = party_collection.products.first
+  assign extra = section.settings.extra_guest_product
+  assign party_variant = party.variants.first
+  assign extra_variant = extra.variants.first
+  assign included = section.settings.included_guests | default: 8
+  assign max_online = section.settings.max_online_guests | default: 12
+-%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="contact page-width page-width--narrow section-{{ section.id }}-padding">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="title title-wrapper--no-top-margin inline-richtext center {{ section.settings.heading_size }}">
+        {{ section.settings.heading }}
+      </h2>
+    {%- endif -%}
+    {%- if section.settings.intro != blank -%}
+      <div class="booking__intro rte">{{ section.settings.intro }}</div>
+    {%- endif -%}
+
+    {%- if party_variant == blank or extra_variant == blank -%}
+      <p class="booking__error">{{ 'sections.party_checkout.not_configured' | t }}</p>
+    {%- else -%}
+      <form
+        id="PartyCheckoutForm-{{ section.id }}"
+        class="isolate"
+        novalidate
+        data-party-checkout
+        data-extra-variant="{{ extra_variant.id }}"
+        data-party-price="{{ party_variant.price }}"
+        data-extra-price="{{ extra_variant.price }}"
+        data-included="{{ included }}"
+        data-cart-add-url="{{ routes.cart_add_url }}.js"
+        data-checkout-url="{{ routes.root_url | append: '/checkout' | replace: '//', '/' }}"
+      >
+        <script type="application/json" data-dates>
+          [
+            {%- for product in party_collection.products limit: 24 -%}
+              {%- for v in product.variants -%}
+                {"id":{{ v.id }},"date":{{ v.option1 | json }},"session":{{ v.option2 | json }},"available":{{ v.available }}}
+                {%- unless forloop.last %},{% endunless -%}
+              {%- endfor -%}
+              {%- unless forloop.last %},{% endunless -%}
+            {%- endfor -%}
+          ]
+        </script>
+
+        <p class="booking__required">{{ 'sections.party_booking.required_note' | t }}</p>
+
+        <fieldset class="booking__group">
+          <legend class="booking__legend">{{ 'sections.party_booking.about_party' | t }}</legend>
+          <div class="booking__grid">
+            <div class="booking__item booking__item--full">
+              <span class="booking__label" id="Checkout-date-label-{{ section.id }}">
+                {{- 'sections.party_booking.date' | t }} *</span
+              >
+              <div class="booking-calendar" data-calendar aria-labelledby="Checkout-date-label-{{ section.id }}">
+                <div class="booking-calendar__header">
+                  <button type="button" class="booking-calendar__nav" data-cal-prev aria-label="{{ 'sections.party_checkout.previous_month' | t }}">
+                    &lsaquo;
+                  </button>
+                  <span class="booking-calendar__month" data-cal-month aria-live="polite"></span>
+                  <button type="button" class="booking-calendar__nav" data-cal-next aria-label="{{ 'sections.party_checkout.next_month' | t }}">
+                    &rsaquo;
+                  </button>
+                </div>
+                <div class="booking-calendar__grid" data-cal-grid role="grid"></div>
+                <div class="booking-calendar__legend">
+                  <span><i class="booking-calendar__swatch"></i>{{ 'sections.party_checkout.available' | t }}</span>
+                  <span><i class="booking-calendar__swatch booking-calendar__swatch--booked"></i>{{ 'sections.party_checkout.booked' | t }}</span>
+                </div>
+              </div>
+              <p class="booking__hint" data-cal-selected></p>
+              <input type="hidden" data-property="Party date" data-date-input required>
+            </div>
+            <div class="booking__item booking__item--full" data-sessions hidden>
+              <span class="booking__label">{{ 'sections.party_checkout.session' | t }} *</span>
+              <div class="booking-sessions">
+                <button type="button" class="booking-sessions__option" data-session="Morning" aria-pressed="false">
+                  {{- 'sections.party_checkout.morning' | t -}}
+                </button>
+                <button type="button" class="booking-sessions__option" data-session="Afternoon" aria-pressed="false">
+                  {{- 'sections.party_checkout.afternoon' | t -}}
+                </button>
+              </div>
+              <input type="hidden" data-property="Session" data-session-input>
+            </div>
+            <div class="booking__item">
+              <label for="Checkout-time-{{ section.id }}">{{ 'sections.party_booking.time' | t }}</label>
+              <input
+                type="time"
+                id="Checkout-time-{{ section.id }}"
+                step="900"
+                data-property="Start time"
+              >
+              <span class="booking__hint">{{ 'sections.party_booking.time_hint' | t }}</span>
+            </div>
+            <div class="booking__item">
+              <label for="Checkout-guests-{{ section.id }}">{{ 'sections.party_booking.guests' | t }} *</label>
+              <select id="Checkout-guests-{{ section.id }}" required data-guests data-property="Number of guests">
+                <option value="" disabled selected>{{ 'sections.party_booking.choose' | t }}</option>
+                <option value="{{ included }}">{{ 'sections.party_booking.up_to_8' | t }}</option>
+                {%- assign first_extra = included | plus: 1 -%}
+                {%- for n in (first_extra..max_online) -%}
+                  <option value="{{ n }}">{{ n }}</option>
+                {%- endfor -%}
+                <option value="more">{{ 'sections.party_booking.more_than_12' | t }}</option>
+              </select>
+            </div>
+            <div class="booking__item">
+              <label for="Checkout-ages-{{ section.id }}">{{ 'sections.party_booking.ages' | t }} *</label>
+              <input
+                type="text"
+                id="Checkout-ages-{{ section.id }}"
+                required
+                placeholder="{{ 'sections.party_booking.ages_placeholder' | t }}"
+                data-property="Guest ages"
+              >
+            </div>
+            <div class="booking__item">
+              <label for="Checkout-occasion-{{ section.id }}">{{ 'sections.party_booking.occasion' | t }}</label>
+              <select id="Checkout-occasion-{{ section.id }}" data-property="Occasion">
+                <option value="Birthday">{{ 'sections.party_booking.occasion_birthday' | t }}</option>
+                <option value="Sleepover">{{ 'sections.party_booking.occasion_sleepover' | t }}</option>
+                <option value="Celebration">{{ 'sections.party_booking.occasion_celebration' | t }}</option>
+                <option value="Other">{{ 'sections.party_booking.occasion_other' | t }}</option>
+              </select>
+            </div>
+            <div class="booking__item">
+              <label for="Checkout-celebrating-{{ section.id }}">{{ 'sections.party_booking.celebrating' | t }}</label>
+              <input type="text" id="Checkout-celebrating-{{ section.id }}" data-property="Who we're celebrating">
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="booking__group">
+          <legend class="booking__legend">{{ 'sections.party_booking.where' | t }}</legend>
+          <div class="booking__grid">
+            <div class="booking__item">
+              <label for="Checkout-venue-{{ section.id }}">{{ 'sections.party_booking.venue' | t }} *</label>
+              <select id="Checkout-venue-{{ section.id }}" required data-property="Venue type">
+                <option value="" disabled selected>{{ 'sections.party_booking.choose' | t }}</option>
+                <option value="At home">{{ 'sections.party_booking.venue_home' | t }}</option>
+                <option value="Booked venue">{{ 'sections.party_booking.venue_booked' | t }}</option>
+              </select>
+            </div>
+            <div class="booking__item">
+              <label for="Checkout-area-{{ section.id }}">{{ 'sections.party_booking.area' | t }} *</label>
+              <input
+                type="text"
+                id="Checkout-area-{{ section.id }}"
+                required
+                placeholder="{{ 'sections.party_booking.area_placeholder' | t }}"
+                data-property="Town / area"
+              >
+              <span class="booking__hint">{{ 'sections.party_booking.area_hint' | t }}</span>
+            </div>
+            <div class="booking__item booking__item--full">
+              <label for="Checkout-address-{{ section.id }}">{{ 'sections.party_checkout.address' | t }} *</label>
+              <input
+                type="text"
+                id="Checkout-address-{{ section.id }}"
+                required
+                autocomplete="street-address"
+                data-property="Party address"
+              >
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="booking__group">
+          <legend class="booking__legend">{{ 'sections.party_booking.about_you' | t }}</legend>
+          <div class="booking__grid">
+            <div class="booking__item">
+              <label for="Checkout-phone-{{ section.id }}">{{ 'sections.party_booking.phone' | t }} *</label>
+              <input
+                type="tel"
+                id="Checkout-phone-{{ section.id }}"
+                required
+                autocomplete="tel"
+                data-property="Phone / WhatsApp"
+              >
+              <span class="booking__hint">{{ 'sections.party_checkout.phone_hint' | t }}</span>
+            </div>
+            <div class="booking__item booking__item--full">
+              <label for="Checkout-notes-{{ section.id }}">{{ 'sections.party_booking.message' | t }}</label>
+              <textarea
+                id="Checkout-notes-{{ section.id }}"
+                placeholder="{{ 'sections.party_booking.message_placeholder' | t }}"
+                data-property="Notes"
+              ></textarea>
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="booking__estimate" data-summary hidden>
+          <div class="booking__summary-row">
+            <span>{{ 'sections.party_checkout.party_line' | t: guests: included }}</span>
+            <span data-summary-party></span>
+          </div>
+          <div class="booking__summary-row" data-summary-extra-row hidden>
+            <span data-summary-extra-label></span>
+            <span data-summary-extra></span>
+          </div>
+          <div class="booking__summary-row booking__summary-row--total">
+            <span>{{ 'sections.party_checkout.total' | t }}</span>
+            <span data-summary-total></span>
+          </div>
+        </div>
+
+        <div class="booking__estimate booking__large-group" data-large-group hidden>
+          <p>{{ 'sections.party_checkout.large_group' | t }}</p>
+          <a class="button button--secondary" href="{{ section.settings.enquiry_page.url | default: '/pages/contact' }}">
+            {{- 'sections.party_checkout.large_group_button' | t -}}
+          </a>
+        </div>
+
+        <p class="booking__hint center" data-confirm-note>{{ 'sections.party_checkout.confirm_note' | t }}</p>
+        <p class="booking__error" role="alert" data-error hidden></p>
+
+        <input type="hidden" data-property="Language" value="{% if request.locale.iso_code == 'es' %}Spanish{% else %}English{% endif %}">
+
+        <div class="contact__button">
+          <button type="submit" class="button" data-submit>
+            {{- 'sections.party_checkout.submit' | t -}}
+          </button>
+        </div>
+      </form>
+
+      <script>
+        (function () {
+          var form = document.getElementById('PartyCheckoutForm-{{ section.id }}');
+          if (!form) return;
+
+          var guests = form.querySelector('[data-guests]');
+          var summary = form.querySelector('[data-summary]');
+          var largeGroup = form.querySelector('[data-large-group]');
+          var extraRow = form.querySelector('[data-summary-extra-row]');
+          var errorBox = form.querySelector('[data-error]');
+          var submit = form.querySelector('[data-submit]');
+
+          var partyPrice = parseInt(form.dataset.partyPrice, 10);
+          var extraPrice = parseInt(form.dataset.extraPrice, 10);
+          var included = parseInt(form.dataset.included, 10);
+          var locale = document.documentElement.lang || 'en';
+          var extraLabel = {{ 'sections.party_checkout.extra_line' | t | json }};
+          var errorText = {{ 'sections.party_checkout.error' | t | json }};
+          var requiredText = {{ 'sections.party_checkout.required_error' | t | json }};
+
+          function money(cents) {
+            return new Intl.NumberFormat(locale, {
+              style: 'currency',
+              currency: {{ cart.currency.iso_code | default: 'EUR' | json }},
+              minimumFractionDigits: 0,
+            }).format(cents / 100);
+          }
+
+          function extraGuests() {
+            var value = guests.value;
+            if (!value || value === 'more') return null;
+            return Math.max(0, parseInt(value, 10) - included);
+          }
+
+          function update() {
+            var isLarge = guests.value === 'more';
+            largeGroup.hidden = !isLarge;
+            submit.disabled = isLarge;
+            var extras = extraGuests();
+            if (extras === null) {
+              summary.hidden = true;
+              return;
+            }
+            summary.hidden = false;
+            form.querySelector('[data-summary-party]').textContent = money(partyPrice);
+            extraRow.hidden = extras === 0;
+            form.querySelector('[data-summary-extra-label]').textContent = extraLabel
+              .replace('[count]', extras)
+              .replace('[price]', money(extraPrice));
+            form.querySelector('[data-summary-extra]').textContent = money(extras * extraPrice);
+            form.querySelector('[data-summary-total]').textContent = money(partyPrice + extras * extraPrice);
+          }
+
+          guests.addEventListener('change', update);
+          update();
+
+          // Availability calendar: one product variant per date; sold-out variants are already booked.
+          var dates = JSON.parse(form.querySelector('[data-dates]').textContent);
+          var byDate = {};
+          dates.forEach(function (d) {
+            var day = byDate[d.date] || (byDate[d.date] = { date: d.date, sessions: {}, available: false });
+            day.sessions[d.session] = d;
+            if (d.available) day.available = true;
+          });
+          var sortedDates = Object.keys(byDate).sort();
+          var sessionsBox = form.querySelector('[data-sessions]');
+          var sessionInput = form.querySelector('[data-session-input]');
+          var selectedDay = null;
+          var dateInput = form.querySelector('[data-date-input]');
+          var grid = form.querySelector('[data-cal-grid]');
+          var monthLabel = form.querySelector('[data-cal-month]');
+          var prev = form.querySelector('[data-cal-prev]');
+          var next = form.querySelector('[data-cal-next]');
+          var selectedLabel = form.querySelector('[data-cal-selected]');
+          var selectedText = {{ 'sections.party_checkout.selected_date' | t | json }};
+          var selectedVariant = null;
+
+          function iso(date) {
+            return date.getFullYear() + '-' + String(date.getMonth() + 1).padStart(2, '0') + '-' + String(date.getDate()).padStart(2, '0');
+          }
+
+          var today = new Date();
+          today.setHours(0, 0, 0, 0);
+          var lastDate = sortedDates.length ? new Date(sortedDates[sortedDates.length - 1] + 'T00:00:00') : today;
+          var view = new Date(today.getFullYear(), today.getMonth(), 1);
+          var firstMonth = new Date(view);
+          var lastMonth = new Date(lastDate.getFullYear(), lastDate.getMonth(), 1);
+
+          function render() {
+            monthLabel.textContent = view.toLocaleDateString(locale, { month: 'long', year: 'numeric' });
+            prev.disabled = view <= firstMonth;
+            next.disabled = view >= lastMonth;
+            grid.innerHTML = '';
+
+            var monday = new Date(2024, 0, 1);
+            for (var w = 0; w < 7; w++) {
+              var head = document.createElement('span');
+              head.className = 'booking-calendar__weekday';
+              head.textContent = new Date(monday.getFullYear(), 0, 1 + w).toLocaleDateString(locale, { weekday: 'short' });
+              grid.appendChild(head);
+            }
+
+            var offset = (view.getDay() + 6) % 7;
+            for (var i = 0; i < offset; i++) grid.appendChild(document.createElement('span'));
+
+            var daysInMonth = new Date(view.getFullYear(), view.getMonth() + 1, 0).getDate();
+            for (var day = 1; day <= daysInMonth; day++) {
+              var date = new Date(view.getFullYear(), view.getMonth(), day);
+              var key = iso(date);
+              var entry = byDate[key];
+              var button = document.createElement('button');
+              button.type = 'button';
+              button.className = 'booking-calendar__day';
+              button.textContent = day;
+              button.dataset.date = key;
+              button.setAttribute('aria-label', date.toLocaleDateString(locale, { weekday: 'long', day: 'numeric', month: 'long' }));
+              if (!entry || date < today) {
+                button.disabled = true;
+              } else if (!entry.available) {
+                button.disabled = true;
+                button.classList.add('booking-calendar__day--booked');
+              }
+              button.setAttribute('aria-pressed', selectedDay && selectedDay.date === key ? 'true' : 'false');
+              grid.appendChild(button);
+            }
+          }
+
+          grid.addEventListener('click', function (event) {
+            var button = event.target.closest('.booking-calendar__day');
+            if (!button || button.disabled) return;
+            selectedDay = byDate[button.dataset.date];
+            selectedVariant = null;
+            sessionInput.value = '';
+            dateInput.value = selectedDay.date;
+            sessionsBox.hidden = false;
+            sessionsBox.querySelectorAll('[data-session]').forEach(function (option) {
+              var variant = selectedDay.sessions[option.dataset.session];
+              option.disabled = !variant || !variant.available;
+              option.setAttribute('aria-pressed', 'false');
+            });
+            var chosen = new Date(selectedDay.date + 'T00:00:00');
+            selectedLabel.textContent = selectedText.replace(
+              '[date]',
+              chosen.toLocaleDateString(locale, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })
+            );
+            render();
+          });
+          sessionsBox.addEventListener('click', function (event) {
+            var option = event.target.closest('[data-session]');
+            if (!option || option.disabled || !selectedDay) return;
+            selectedVariant = selectedDay.sessions[option.dataset.session];
+            sessionInput.value = option.dataset.session;
+            sessionsBox.querySelectorAll('[data-session]').forEach(function (other) {
+              other.setAttribute('aria-pressed', other === option ? 'true' : 'false');
+            });
+          });
+
+          prev.addEventListener('click', function () {
+            view.setMonth(view.getMonth() - 1);
+            render();
+          });
+          next.addEventListener('click', function () {
+            view.setMonth(view.getMonth() + 1);
+            render();
+          });
+          render();
+
+          form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            errorBox.hidden = true;
+
+            if (!selectedVariant) {
+              errorBox.textContent = selectedDay
+                ? {{ 'sections.party_checkout.choose_session' | t | json }}
+                : {{ 'sections.party_checkout.choose_date' | t | json }};
+              errorBox.hidden = false;
+              form.querySelector('[data-calendar]').scrollIntoView({ behavior: 'smooth', block: 'center' });
+              return;
+            }
+
+            if (!form.checkValidity()) {
+              form.reportValidity();
+              errorBox.textContent = requiredText;
+              errorBox.hidden = false;
+              return;
+            }
+
+            var extras = extraGuests();
+            if (extras === null) return;
+
+            var properties = {};
+            form.querySelectorAll('[data-property]').forEach(function (field) {
+              if (field.value) properties[field.dataset.property] = field.value;
+            });
+            properties['Number of guests'] = String(included + extras);
+
+            var items = [{ id: selectedVariant.id, quantity: 1, properties: properties }];
+            if (extras > 0) {
+              items.push({
+                id: parseInt(form.dataset.extraVariant, 10),
+                quantity: extras,
+                properties: { 'Party date': properties['Party date'] },
+              });
+            }
+
+            submit.disabled = true;
+            submit.setAttribute('aria-busy', 'true');
+
+            fetch(form.dataset.cartAddUrl, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+              body: JSON.stringify({ items: items }),
+            })
+              .then(function (response) {
+                if (response.status === 422) throw new Error('unavailable');
+                if (!response.ok) throw new Error('cart');
+                window.location.href = form.dataset.checkoutUrl;
+              })
+              .catch(function (error) {
+                submit.disabled = false;
+                submit.removeAttribute('aria-busy');
+                errorBox.textContent =
+                  error.message === 'unavailable' ? {{ 'sections.party_checkout.date_taken' | t | json }} : errorText;
+                errorBox.hidden = false;
+              });
+          });
+        })();
+      </script>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Party booking & payment",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "Book your charm bar party",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" }
+      ],
+      "default": "h1",
+      "label": "Heading size"
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Intro text"
+    },
+    {
+      "type": "header",
+      "content": "Products"
+    },
+    {
+      "type": "collection",
+      "id": "party_collection",
+      "label": "Party dates collection",
+      "info": "One product per month, with Date and Session options. Each date/session has 1 in stock; sold out = booked."
+    },
+    {
+      "type": "product",
+      "id": "extra_guest_product",
+      "label": "Extra guest product"
+    },
+    {
+      "type": "number",
+      "id": "included_guests",
+      "label": "Guests included in party price",
+      "default": 8
+    },
+    {
+      "type": "number",
+      "id": "max_online_guests",
+      "label": "Most guests bookable online",
+      "info": "Larger groups are sent to the enquiry page",
+      "default": 12
+    },
+    {
+      "type": "page",
+      "id": "enquiry_page",
+      "label": "Enquiry page for larger groups"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Colour scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "Party booking & payment"
+    }
+  ]
+}
+{% endschema %}

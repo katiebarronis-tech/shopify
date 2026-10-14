@@ -418,6 +418,31 @@
       "required_note": "Fields marked * are required.",
       "send": "Send booking enquiry",
       "success": "Thank you! We've received your party enquiry and will be in touch within 24 hours to confirm availability."
+    },
+    "party_checkout": {
+      "not_configured": "Online booking isn't set up yet – please choose the party products in the theme editor.",
+      "address": "Party address",
+      "phone_hint": "So we can contact you about the party",
+      "party_line": "Charm bar party (up to {{ guests }} guests)",
+      "extra_line": "[count] extra guests × [price]",
+      "total": "Total",
+      "large_group": "For more than 12 guests, send us an enquiry and we'll prepare a tailored quote.",
+      "large_group_button": "Send an enquiry",
+      "confirm_note": "Your date is reserved as soon as payment is complete. You'll receive a confirmation email, and we'll be in touch to finalise the details.",
+      "error": "Sorry, something went wrong. Please try again or send us an enquiry.",
+      "required_error": "Please fill in all the fields marked *.",
+      "choose_date": "Please choose a date from the calendar.",
+      "date_taken": "Sorry, that date has just been booked. Please choose another date.",
+      "submit": "Continue to payment",
+      "previous_month": "Previous month",
+      "next_month": "Next month",
+      "available": "Available",
+      "booked": "Booked",
+      "selected_date": "Selected: [date]",
+      "session": "Session",
+      "morning": "Morning",
+      "afternoon": "Afternoon",
+      "choose_session": "Please choose a morning or afternoon session."
     }
   },
   "localization": {
