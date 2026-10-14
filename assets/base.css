@@ -3654,8 +3654,11 @@ details-disclosure > details {
 
 .localization-selector .language-flag {
   margin-right: 0.6rem;
+  vertical-align: middle;
 }
 
-.disclosure__link .language-flag {
-  margin-right: 0.8rem;
+.language-selector .disclosure__link {
+  align-items: center;
+  grid-template-columns: auto auto 1fr;
+  gap: 0.8rem;
 }
