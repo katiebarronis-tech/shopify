@@ -13,7 +13,7 @@
         "text": {
           "type": "text",
           "settings": {
-            "text": "Pick, mix and create your own charm jewellery – a calm, creative party they'll remember.",
+            "text": "Pick, mix and create your own charm jewellery – a calm, creative 90-minute party, brought to you around Puerto Banús and Marbella.",
             "text_style": "body"
           }
         },
@@ -68,7 +68,7 @@
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>We bring the charm bar to you. Each guest chooses their chain and charms, then designs a bracelet or necklace to take home. Everything is set up, guided and packed away for you – you just enjoy the party.</p>"
+            "text": "<p>We bring the charm bar to you – at home or at your booked venue. Each guest chooses their chain and charms, then designs a bracelet or necklace to take home. Everything is set up, guided and packed away for you, so you can simply enjoy the party.</p>"
           }
         }
       },
@@ -93,7 +93,7 @@
           "type": "column",
           "settings": {
             "title": "1. Book your date",
-            "text": "<p>Send us your date, location and number of guests. We'll confirm availability and a quote.</p>",
+            "text": "<p>Send us your date, location and number of guests. Parties start from €360 for up to 8 guests.</p>",
             "link_label": "",
             "link": ""
           }
@@ -102,7 +102,7 @@
           "type": "column",
           "settings": {
             "title": "2. We set up the bar",
-            "text": "<p>We arrive with chains, charms and everything needed, styled in soft, pretty displays.</p>",
+            "text": "<p>We arrive at your home or venue with chains, charms and everything needed, styled in soft, pretty displays.</p>",
             "link_label": "",
             "link": ""
           }
@@ -111,7 +111,7 @@
           "type": "column",
           "settings": {
             "title": "3. Create & take home",
-            "text": "<p>Guests design their own piece with our help, and leave with it in a gift pouch.</p>",
+            "text": "<p>Over 90 minutes, guests design their own piece with our help and leave with it to keep.</p>",
             "link_label": "",
             "link": ""
           }
@@ -188,7 +188,7 @@
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>Tell us about your celebration and we'll put together a charm bar to match – from small sleepovers to bigger birthday parties.</p>",
+            "text": "<p>Tell us about your celebration and we'll put together a charm bar to match. Parties are for 8 to 12 guests (more on request) and start from €360.</p>",
             "text_style": "body"
           }
         },
@@ -236,20 +236,44 @@
         "q2": {
           "type": "collapsible_row",
           "settings": {
-            "heading": "How many guests can attend?",
-            "icon": "question_mark",
-            "row_content": "<p>Tell us your guest numbers and we'll tailor the charm bar to suit.</p>"
+            "heading": "How long does a party last?",
+            "icon": "stopwatch",
+            "row_content": "<p>Each party lasts 90 minutes.</p>"
           }
         },
         "q3": {
           "type": "collapsible_row",
           "settings": {
-            "heading": "How long does a party last?",
+            "heading": "How many guests can attend?",
             "icon": "question_mark",
-            "row_content": "<p>Let us know how long you'd like and we'll plan around it.</p>"
+            "row_content": "<p>Parties are for 8 to 12 guests. We can cater for larger groups too – just ask when you enquire.</p>"
           }
         },
         "q4": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How much does a party cost?",
+            "icon": "price_tag",
+            "row_content": "<p>The minimum spend is €360, which covers up to 8 guests. Each additional guest is €45.</p>"
+          }
+        },
+        "q5": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Where do you travel to?",
+            "icon": "map_pin",
+            "row_content": "<p>We're based in Puerto Banús and travel up to 30 minutes' drive in every direction – including Marbella, San Pedro, Nueva Andalucía, Benahavís and Estepona.</p>"
+          }
+        },
+        "q6": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Where can the party be held?",
+            "icon": "question_mark",
+            "row_content": "<p>At your home or at a venue you've booked.</p>"
+          }
+        },
+        "q7": {
           "type": "collapsible_row",
           "settings": {
             "heading": "Do you speak Spanish? / ¿Habláis español?",
@@ -262,7 +286,10 @@
         "q1",
         "q2",
         "q3",
-        "q4"
+        "q4",
+        "q5",
+        "q6",
+        "q7"
       ],
       "settings": {
         "caption": "",
