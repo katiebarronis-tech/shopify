@@ -145,7 +145,7 @@
           "settings": {
             "heading": "Do parents need to stay?",
             "icon": "silhouette",
-            "row_content": "<p><strong>[To confirm]</strong></p>"
+            "row_content": "<p>No, parents don't need to stay.</p>"
           }
         },
         "q5": {
