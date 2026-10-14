@@ -426,7 +426,7 @@
       "party_line": "Charm bar party (up to {{ guests }} guests)",
       "extra_line": "[count] extra guests × [price]",
       "total": "Total",
-      "large_group": "For more than 12 guests, send us an enquiry and we'll prepare a tailored quote.",
+      "large_group": "For more than {{ count }} guests, send us an enquiry and we'll prepare a tailored quote.",
       "large_group_button": "Send an enquiry",
       "confirm_note": "Your date is reserved as soon as payment is complete. You'll receive a confirmation email, and we'll be in touch to finalise the details.",
       "error": "Sorry, something went wrong. Please try again or send us an enquiry.",
@@ -442,7 +442,8 @@
       "session": "Session",
       "morning": "Morning",
       "afternoon": "Afternoon",
-      "choose_session": "Please choose a morning or afternoon session."
+      "choose_session": "Please choose a morning or afternoon session.",
+      "more_than": "More than {{ count }}"
     }
   },
   "localization": {

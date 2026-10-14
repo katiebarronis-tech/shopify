@@ -438,7 +438,7 @@
       "party_line": "Fiesta charm bar (hasta {{ guests }} invitados)",
       "extra_line": "[count] invitados adicionales × [price]",
       "total": "Total",
-      "large_group": "Para más de 12 invitados, envíanos una consulta y te prepararemos un presupuesto a medida.",
+      "large_group": "Para más de {{ count }} invitados, envíanos una consulta y te prepararemos un presupuesto a medida.",
       "large_group_button": "Enviar una consulta",
       "confirm_note": "Tu fecha queda reservada en cuanto se completa el pago. Recibirás un correo de confirmación y te contactaremos para cerrar los detalles.",
       "error": "Lo sentimos, algo ha fallado. Inténtalo de nuevo o envíanos una consulta.",
@@ -454,7 +454,8 @@
       "session": "Sesión",
       "morning": "Mañana",
       "afternoon": "Tarde",
-      "choose_session": "Elige una sesión de mañana o de tarde."
+      "choose_session": "Elige una sesión de mañana o de tarde.",
+      "more_than": "Más de {{ count }}"
     }
   },
   "localization": {

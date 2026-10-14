@@ -8,7 +8,7 @@
         "intro": "<p>Choose an available date, tell us about the party and pay securely to reserve it. Parties last 90 minutes and cost €360 for up to 8 guests, plus €45 per extra guest.</p>",
         "extra_guest_product": "extra-party-guest",
         "included_guests": 8,
-        "max_online_guests": 12,
+        "max_online_guests": 50,
         "enquiry_page": "contact",
         "color_scheme": "scheme-1",
         "padding_top": 36,

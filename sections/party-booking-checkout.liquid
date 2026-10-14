@@ -293,7 +293,7 @@
                 {%- for n in (first_extra..max_online) -%}
                   <option value="{{ n }}">{{ n }}</option>
                 {%- endfor -%}
-                <option value="more">{{ 'sections.party_booking.more_than_12' | t }}</option>
+                <option value="more">{{ 'sections.party_checkout.more_than' | t: count: max_online }}</option>
               </select>
             </div>
             <div class="booking__item">
@@ -398,7 +398,7 @@
         </div>
 
         <div class="booking__estimate booking__large-group" data-large-group hidden>
-          <p>{{ 'sections.party_checkout.large_group' | t }}</p>
+          <p>{{ 'sections.party_checkout.large_group' | t: count: max_online }}</p>
           <a class="button button--secondary" href="{{ section.settings.enquiry_page.url | default: '/pages/contact' }}">
             {{- 'sections.party_checkout.large_group_button' | t -}}
           </a>
@@ -705,7 +705,7 @@
       "id": "max_online_guests",
       "label": "Most guests bookable online",
       "info": "Larger groups are sent to the enquiry page",
-      "default": 12
+      "default": 50
     },
     {
       "type": "page",
