@@ -275,13 +275,22 @@
               <input type="hidden" data-property="Session" data-session-input>
             </div>
             <div class="booking__item">
-              <label for="Checkout-time-{{ section.id }}">{{ 'sections.party_booking.time' | t }}</label>
-              <select id="Checkout-time-{{ section.id }}" data-property="Start time">
-                <option value="" selected>{{ 'sections.party_booking.choose' | t }}</option>
-                {%- for hour in (9..19) -%}
+              <label for="Checkout-time-{{ section.id }}">{{ 'sections.party_booking.time' | t }} *</label>
+              <select id="Checkout-time-{{ section.id }}" data-property="Start time" data-time required disabled>
+                <option value="" selected>{{ 'sections.party_checkout.choose_session_first' | t }}</option>
+                {%- for hour in (9..18) -%}
                   {%- assign hh = hour | prepend: '0' | slice: -2, 2 -%}
-                  <option value="{{ hh }}:00">{{ hh }}:00</option>
-                  <option value="{{ hh }}:30">{{ hh }}:30</option>
+                  {%- if hour < 13 -%}
+                    {%- assign session_name = 'Morning' -%}
+                  {%- else -%}
+                    {%- assign session_name = 'Afternoon' -%}
+                  {%- endif -%}
+                  {%- if hour != 12 or session_name == 'Morning' -%}
+                    <option value="{{ hh }}:00" data-time-session="{{ session_name }}">{{ hh }}:00</option>
+                  {%- endif -%}
+                  {%- if hour != 12 and hour != 18 -%}
+                    <option value="{{ hh }}:30" data-time-session="{{ session_name }}">{{ hh }}:30</option>
+                  {%- endif -%}
                 {%- endfor -%}
               </select>
               <span class="booking__hint">{{ 'sections.party_booking.time_hint' | t }}</span>
@@ -551,6 +560,7 @@
             selectedDay = byDate[button.dataset.date];
             selectedVariant = null;
             sessionInput.value = '';
+            filterTimes(null);
             dateInput.value = selectedDay.date;
             sessionsBox.hidden = false;
             sessionsBox.querySelectorAll('[data-session]').forEach(function (option) {
@@ -565,11 +575,28 @@
             );
             render();
           });
+          var timeSelect = form.querySelector('[data-time]');
+          var timePlaceholder = timeSelect.options[0].textContent;
+          var chooseTimeText = {{ 'sections.party_booking.choose' | t | json }};
+
+          function filterTimes(session) {
+            timeSelect.value = '';
+            timeSelect.disabled = !session;
+            timeSelect.options[0].textContent = session ? chooseTimeText : timePlaceholder;
+            Array.prototype.forEach.call(timeSelect.querySelectorAll('[data-time-session]'), function (opt) {
+              var match = opt.dataset.timeSession === session;
+              opt.hidden = !match;
+              opt.disabled = !match;
+            });
+          }
+          filterTimes(null);
+
           sessionsBox.addEventListener('click', function (event) {
             var option = event.target.closest('[data-session]');
             if (!option || option.disabled || !selectedDay) return;
             selectedVariant = selectedDay.sessions[option.dataset.session];
             sessionInput.value = option.dataset.session;
+            filterTimes(option.dataset.session);
             sessionsBox.querySelectorAll('[data-session]').forEach(function (other) {
               other.setAttribute('aria-pressed', other === option ? 'true' : 'false');
             });
