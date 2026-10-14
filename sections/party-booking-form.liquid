@@ -158,6 +158,12 @@
         </ul>
       {%- endif -%}
 
+      <input
+        type="hidden"
+        name="contact[Preferred language]"
+        value="{% if request.locale.iso_code == 'es' %}Spanish{% else %}English{% endif %}"
+      >
+
       <p class="booking__required">{{ 'sections.party_booking.required_note' | t }}</p>
 
       <fieldset class="booking__group">
@@ -199,13 +205,6 @@
               autocomplete="tel"
               required
             >
-          </div>
-          <div class="booking__item">
-            <label for="Booking-language">{{ 'sections.party_booking.language' | t }}</label>
-            <select id="Booking-language" name="contact[Preferred language]">
-              <option value="English">English</option>
-              <option value="Spanish"{% if request.locale.iso_code == 'es' %} selected{% endif %}>Español</option>
-            </select>
           </div>
         </div>
       </fieldset>

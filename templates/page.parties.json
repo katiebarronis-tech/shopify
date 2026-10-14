@@ -1,0 +1,318 @@
+{
+  "sections": {
+    "banner": {
+      "type": "image-banner",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Charm bar parties",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "Everything you need to know to plan the perfect 90-minute charm party – brought to your home or venue.",
+            "text_style": "body"
+          }
+        },
+        "buttons": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Book a party",
+            "button_link_1": "shopify://pages/contact",
+            "button_style_secondary_1": false,
+            "button_label_2": "See the gallery",
+            "button_link_2": "shopify://pages/gallery",
+            "button_style_secondary_2": true
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text",
+        "buttons"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/mb-letter-board.jpg",
+        "image_overlay_opacity": 10,
+        "image_height": "medium",
+        "desktop_content_position": "middle-center",
+        "show_text_box": true,
+        "image_behavior": "none",
+        "desktop_content_alignment": "center",
+        "color_scheme": "scheme-1",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": false,
+        "show_text_below": true
+      }
+    },
+    "included": {
+      "type": "multicolumn",
+      "blocks": {
+        "c0": {
+          "type": "column",
+          "settings": {
+            "title": "We set everything up",
+            "text": "<p>We arrive with the full charm bar, styled in our soft, pretty displays.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "c1": {
+          "type": "column",
+          "settings": {
+            "title": "Chains & charms for every guest",
+            "text": "<p>Each guest chooses their chain and charms from our collection.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "c2": {
+          "type": "column",
+          "settings": {
+            "title": "Guided making",
+            "text": "<p>We help every guest design and finish their own piece.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "c3": {
+          "type": "column",
+          "settings": {
+            "title": "A piece to take home",
+            "text": "<p>Guests leave with their creation, packed in a mica + bobble pouch.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "c0",
+        "c1",
+        "c2",
+        "c3"
+      ],
+      "settings": {
+        "title": "What's included",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "square",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 4,
+        "column_alignment": "center",
+        "background_style": "primary",
+        "color_scheme": "scheme-2",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 44,
+        "padding_bottom": 44
+      }
+    },
+    "pricing": {
+      "type": "multicolumn",
+      "blocks": {
+        "c0": {
+          "type": "column",
+          "settings": {
+            "title": "Up to 8 guests",
+            "text": "<p><strong>€360</strong></p><p>Our minimum spend</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "c1": {
+          "type": "column",
+          "settings": {
+            "title": "10 guests",
+            "text": "<p><strong>€450</strong></p><p>€360 + 2 × €45</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "c2": {
+          "type": "column",
+          "settings": {
+            "title": "12 guests",
+            "text": "<p><strong>€540</strong></p><p>€360 + 4 × €45</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "c3": {
+          "type": "column",
+          "settings": {
+            "title": "More than 12",
+            "text": "<p><strong>Ask us</strong></p><p>We'll send a tailored quote</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "c0",
+        "c1",
+        "c2",
+        "c3"
+      ],
+      "settings": {
+        "title": "Pricing",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "square",
+        "button_label": "Get a quote",
+        "button_link": "shopify://pages/contact",
+        "columns_desktop": 4,
+        "column_alignment": "center",
+        "background_style": "primary",
+        "color_scheme": "scheme-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 44,
+        "padding_bottom": 44
+      }
+    },
+    "pricing_note": {
+      "type": "rich-text",
+      "blocks": {
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Prices start at €360, which includes up to 8 guests. Each additional guest is €45.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "day": {
+      "type": "multicolumn",
+      "blocks": {
+        "c0": {
+          "type": "column",
+          "settings": {
+            "title": "90 minutes",
+            "text": "<p>Plenty of time to choose, create and show off their pieces.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "c1": {
+          "type": "column",
+          "settings": {
+            "title": "Set-up",
+            "text": "<p>We arrive <strong>[To confirm]</strong> minutes before the start to set up, and pack everything away afterwards.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "c2": {
+          "type": "column",
+          "settings": {
+            "title": "Space needed",
+            "text": "<p>A table where your guests can sit together. <strong>[To confirm]</strong></p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "c3": {
+          "type": "column",
+          "settings": {
+            "title": "Ages 7 to 20",
+            "text": "<p>Perfect for birthdays, sleepovers and celebrations.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "c0",
+        "c1",
+        "c2",
+        "c3"
+      ],
+      "settings": {
+        "title": "On the day",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "square",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 4,
+        "column_alignment": "center",
+        "background_style": "primary",
+        "color_scheme": "scheme-2",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 44,
+        "padding_bottom": 44
+      }
+    },
+    "book": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Ready to book?",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Pick your date and tell us a little about the party – we'll confirm availability within 24 hours.</p>",
+            "text_style": "body"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "button_label": "Book a party",
+            "button_link": "shopify://pages/contact",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text",
+        "button"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/mb-gift-pouches.jpg",
+        "height": "medium",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-1",
+        "color_scheme": "scheme-5",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "included",
+    "pricing",
+    "pricing_note",
+    "day",
+    "book"
+  ]
+}

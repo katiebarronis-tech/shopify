@@ -1,0 +1,308 @@
+{
+  "sections": {
+    "intro": {
+      "type": "rich-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Booking info & FAQs",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Everything you need to know before booking. Can't find your answer? Just ask when you enquire.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "booking": {
+      "type": "collapsible-content",
+      "blocks": {
+        "q0": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How far in advance should I book?",
+            "icon": "question_mark",
+            "row_content": "<p><strong>[To confirm]</strong> We recommend booking as early as possible, especially for weekends.</p>"
+          }
+        },
+        "q1": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Is there a deposit?",
+            "icon": "price_tag",
+            "row_content": "<p><strong>[To confirm]</strong> Deposit amount and when the balance is due.</p>"
+          }
+        },
+        "q2": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How do I pay?",
+            "icon": "price_tag",
+            "row_content": "<p><strong>[To confirm]</strong> Accepted payment methods.</p>"
+          }
+        },
+        "q3": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What if I need to cancel or change the date?",
+            "icon": "return",
+            "row_content": "<p><strong>[To confirm]</strong> Cancellation and date-change policy.</p>"
+          }
+        },
+        "q4": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Can I add guests after booking?",
+            "icon": "question_mark",
+            "row_content": "<p>Yes – just let us know. Each extra guest is €45.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q0",
+        "q1",
+        "q2",
+        "q3",
+        "q4"
+      ],
+      "settings": {
+        "caption": "",
+        "heading": "Booking & payment",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "layout": "none",
+        "container_color_scheme": "scheme-2",
+        "color_scheme": "scheme-1",
+        "open_first_collapsible_row": false,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "party": {
+      "type": "collapsible-content",
+      "blocks": {
+        "q0": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What ages are the parties for?",
+            "icon": "question_mark",
+            "row_content": "<p>Ages 7 to 20.</p>"
+          }
+        },
+        "q1": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How long does a party last?",
+            "icon": "stopwatch",
+            "row_content": "<p>90 minutes.</p>"
+          }
+        },
+        "q2": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How many guests can come?",
+            "icon": "question_mark",
+            "row_content": "<p>Parties are for 8 to 12 guests, and we can cater for larger groups too.</p>"
+          }
+        },
+        "q3": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How much does it cost?",
+            "icon": "price_tag",
+            "row_content": "<p>From €360, which covers up to 8 guests. Each additional guest is €45.</p>"
+          }
+        },
+        "q4": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Do parents need to stay?",
+            "icon": "silhouette",
+            "row_content": "<p><strong>[To confirm]</strong></p>"
+          }
+        },
+        "q5": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Can younger siblings join in?",
+            "icon": "heart",
+            "row_content": "<p><strong>[To confirm]</strong></p>"
+          }
+        },
+        "q6": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What are the charms and chains made of?",
+            "icon": "star",
+            "row_content": "<p><strong>[To confirm]</strong> Materials, and whether they're suitable for sensitive skin.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q0",
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6"
+      ],
+      "settings": {
+        "caption": "",
+        "heading": "The party",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "layout": "none",
+        "container_color_scheme": "scheme-2",
+        "color_scheme": "scheme-1",
+        "open_first_collapsible_row": false,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "location": {
+      "type": "collapsible-content",
+      "blocks": {
+        "q0": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Where do you travel to?",
+            "icon": "map_pin",
+            "row_content": "<p>We're based in Puerto Banús and travel up to 30 minutes' drive in every direction – including Marbella, San Pedro, Nueva Andalucía, Benahavís and Estepona.</p>"
+          }
+        },
+        "q1": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Is there a travel charge?",
+            "icon": "truck",
+            "row_content": "<p><strong>[To confirm]</strong></p>"
+          }
+        },
+        "q2": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Can the party be at a venue?",
+            "icon": "map_pin",
+            "row_content": "<p>Yes – at your home or a venue you've booked.</p>"
+          }
+        },
+        "q3": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How much space do you need?",
+            "icon": "ruler",
+            "row_content": "<p>A table where your guests can sit together. <strong>[To confirm]</strong></p>"
+          }
+        },
+        "q4": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Can the party be outside?",
+            "icon": "question_mark",
+            "row_content": "<p><strong>[To confirm]</strong></p>"
+          }
+        },
+        "q5": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Do you speak Spanish? / ¿Habláis español?",
+            "icon": "chat_bubble",
+            "row_content": "<p>Yes – just let us know when you book. / Sí, indícalo al hacer la reserva.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q0",
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5"
+      ],
+      "settings": {
+        "caption": "",
+        "heading": "Location & travel",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "layout": "none",
+        "container_color_scheme": "scheme-2",
+        "color_scheme": "scheme-1",
+        "open_first_collapsible_row": false,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "cta": {
+      "type": "rich-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Still have a question?",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Send us an enquiry and we'll get back to you within 24 hours.</p>"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "button_label": "Book a party",
+            "button_link": "shopify://pages/contact",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": true
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text",
+        "button"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-2",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    }
+  },
+  "order": [
+    "intro",
+    "booking",
+    "party",
+    "location",
+    "cta"
+  ]
+}

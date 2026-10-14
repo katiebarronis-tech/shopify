@@ -1,0 +1,179 @@
+{
+  "sections": {
+    "intro": {
+      "type": "rich-text",
+      "blocks": {
+        "caption": {
+          "type": "caption",
+          "settings": {
+            "caption": "Gallery",
+            "text_style": "subtitle",
+            "text_size": "medium"
+          }
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Our charm bar parties",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>A peek at our set-ups, charms and the pieces our guests create. For more, follow us on Instagram.</p>"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "button_label": "Follow @micaandbobble",
+            "button_link": "https://www.instagram.com/micaandbobble/",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": true
+          }
+        }
+      },
+      "block_order": [
+        "caption",
+        "heading",
+        "text",
+        "button"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "collage1": {
+      "type": "collage",
+      "blocks": {
+        "i0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/mb-charm-bar-setup.jpg"
+          }
+        },
+        "i1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/mb-making-bracelet.jpg"
+          }
+        },
+        "i2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/mb-charm-tray.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "i0",
+        "i1",
+        "i2"
+      ],
+      "settings": {
+        "heading": "",
+        "heading_size": "h1",
+        "desktop_layout": "left",
+        "mobile_layout": "collage",
+        "card_styles": "none",
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "collage2": {
+      "type": "collage",
+      "blocks": {
+        "i0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/mb-gift-pouches.jpg"
+          }
+        },
+        "i1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/mb-bag-charms.jpg"
+          }
+        },
+        "i2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/mb-brand-card.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "i0",
+        "i1",
+        "i2"
+      ],
+      "settings": {
+        "heading": "",
+        "heading_size": "h1",
+        "desktop_layout": "right",
+        "mobile_layout": "collage",
+        "card_styles": "none",
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "cta": {
+      "type": "rich-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Want this at your party?",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Parties from €360 for up to 8 guests.</p>"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "button_label": "Book a party",
+            "button_link": "shopify://pages/contact",
+            "button_style_secondary": false,
+            "button_label_2": "Parties & pricing",
+            "button_link_2": "shopify://pages/parties",
+            "button_style_secondary_2": true
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text",
+        "button"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-2",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    }
+  },
+  "order": [
+    "intro",
+    "collage1",
+    "collage2",
+    "cta"
+  ]
+}
