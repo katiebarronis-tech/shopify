@@ -44,7 +44,8 @@
         "color_scheme": "scheme-1",
         "mobile_content_alignment": "center",
         "stack_images_on_mobile": false,
-        "show_text_below": true
+        "show_text_below": true,
+        "image": "shopify://shop_images/mb-charm-bar-setup.jpg"
       }
     },
     "intro": {
@@ -53,7 +54,7 @@
         "caption": {
           "type": "caption",
           "settings": {
-            "caption": "For ages 7 to 20",
+            "caption": "Pick your charms. Make it yours.",
             "text_style": "subtitle",
             "text_size": "medium"
           }
@@ -95,7 +96,8 @@
             "title": "1. Book your date",
             "text": "<p>Send us your date, location and number of guests. Parties start from €360 for up to 8 guests.</p>",
             "link_label": "",
-            "link": ""
+            "link": "",
+            "image": "shopify://shop_images/mb-letter-board.jpg"
           }
         },
         "c2": {
@@ -104,7 +106,8 @@
             "title": "2. We set up the bar",
             "text": "<p>We arrive at your home or venue with chains, charms and everything needed, styled in soft, pretty displays.</p>",
             "link_label": "",
-            "link": ""
+            "link": "",
+            "image": "shopify://shop_images/mb-charm-tray.jpg"
           }
         },
         "c3": {
@@ -113,7 +116,8 @@
             "title": "3. Create & take home",
             "text": "<p>Over 90 minutes, guests design their own piece with our help and leave with it to keep.</p>",
             "link_label": "",
-            "link": ""
+            "link": "",
+            "image": "shopify://shop_images/mb-gift-pouches.jpg"
           }
         }
       },
@@ -125,8 +129,8 @@
       "settings": {
         "title": "How a party works",
         "heading_size": "h1",
-        "image_width": "third",
-        "image_ratio": "circle",
+        "image_width": "full",
+        "image_ratio": "square",
         "button_label": "Book a party",
         "button_link": "shopify://pages/contact",
         "columns_desktop": 3,
@@ -219,7 +223,8 @@
         "section_color_scheme": "scheme-1",
         "color_scheme": "scheme-5",
         "padding_top": 36,
-        "padding_bottom": 36
+        "padding_bottom": 36,
+        "image": "shopify://shop_images/mb-making-bracelet.jpg"
       }
     },
     "faq": {
