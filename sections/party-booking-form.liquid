@@ -1,0 +1,461 @@
+{{ 'section-contact-form.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .booking__intro {
+    margin: 0 0 3rem;
+    text-align: center;
+  }
+
+  .booking__group {
+    border: 0;
+    margin: 0 0 3rem;
+    padding: 0;
+  }
+
+  .booking__legend {
+    font-family: var(--font-heading-family);
+    font-size: calc(var(--font-heading-scale) * 2.2rem);
+    margin-bottom: 1.5rem;
+    padding: 0;
+  }
+
+  .booking__grid {
+    display: grid;
+    gap: 1.6rem 2rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .booking__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .booking__item--full {
+      grid-column: 1 / -1;
+    }
+  }
+
+  .booking__item label {
+    display: block;
+    font-size: 1.4rem;
+    letter-spacing: 0.04rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .booking__item input,
+  .booking__item select,
+  .booking__item textarea {
+    -webkit-appearance: none;
+    appearance: none;
+    background: rgb(var(--color-background));
+    border: var(--inputs-border-width) solid rgba(var(--color-foreground), var(--inputs-border-opacity));
+    border-radius: var(--inputs-radius);
+    box-sizing: border-box;
+    color: rgb(var(--color-foreground));
+    font-family: var(--font-body-family);
+    font-size: 1.6rem;
+    min-height: 4.6rem;
+    padding: 1rem 1.4rem;
+    width: 100%;
+  }
+
+  .booking__item select {
+    background-image: linear-gradient(45deg, transparent 50%, currentColor 50%),
+      linear-gradient(135deg, currentColor 50%, transparent 50%);
+    background-position: calc(100% - 2rem) 50%, calc(100% - 1.5rem) 50%;
+    background-repeat: no-repeat;
+    background-size: 0.5rem 0.5rem;
+    padding-right: 4rem;
+  }
+
+  .booking__item textarea {
+    min-height: 12rem;
+    resize: vertical;
+  }
+
+  .booking__item input:focus-visible,
+  .booking__item select:focus-visible,
+  .booking__item textarea:focus-visible {
+    outline: 0.2rem solid rgba(var(--color-foreground), 0.5);
+    outline-offset: 0.2rem;
+  }
+
+  .booking__hint {
+    display: block;
+    font-size: 1.3rem;
+    margin-top: 0.4rem;
+    opacity: 0.75;
+  }
+
+  .booking__estimate {
+    background: rgba(var(--color-foreground), 0.05);
+    border-radius: var(--text-boxes-radius);
+    margin: 0 0 3rem;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .booking__estimate-price {
+    display: block;
+    font-family: var(--font-heading-family);
+    font-size: calc(var(--font-heading-scale) * 3.2rem);
+    margin: 0.4rem 0;
+  }
+
+  .booking__required {
+    font-size: 1.3rem;
+    margin: 0 0 2rem;
+    opacity: 0.75;
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign today = 'now' | date: '%Y-%m-%d'
+-%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="contact page-width page-width--narrow section-{{ section.id }}-padding">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="title title-wrapper--no-top-margin inline-richtext center {{ section.settings.heading_size }}">
+        {{ section.settings.heading }}
+      </h2>
+    {%- endif -%}
+    {%- if section.settings.intro != blank -%}
+      <div class="booking__intro rte">{{ section.settings.intro }}</div>
+    {%- endif -%}
+
+    {%- form 'contact', id: 'PartyBookingForm', class: 'isolate' -%}
+      {%- if form.posted_successfully? -%}
+        <h2 class="form-status form-status-list form__message" tabindex="-1" autofocus>
+          {{- 'icon-success.svg' | inline_asset_content -}}
+          {{ 'sections.party_booking.success' | t }}
+        </h2>
+      {%- elsif form.errors -%}
+        <div class="form__message">
+          <h2 class="form-status caption-large text-body" role="alert" tabindex="-1" autofocus>
+            {{- 'icon-error.svg' | inline_asset_content -}}
+            {{ 'templates.contact.form.error_heading' | t }}
+          </h2>
+        </div>
+        <ul class="form-status-list caption-large" role="list">
+          <li>
+            <a href="#Booking-email" class="link">
+              {{ form.errors.translated_fields.email | capitalize }}
+              {{ form.errors.messages.email }}
+            </a>
+          </li>
+        </ul>
+      {%- endif -%}
+
+      <p class="booking__required">{{ 'sections.party_booking.required_note' | t }}</p>
+
+      <fieldset class="booking__group">
+        <legend class="booking__legend">{{ 'sections.party_booking.about_you' | t }}</legend>
+        <div class="booking__grid">
+          <div class="booking__item">
+            <label for="Booking-name">{{ 'sections.party_booking.name' | t }} *</label>
+            <input
+              type="text"
+              id="Booking-name"
+              name="contact[Name]"
+              autocomplete="name"
+              required
+              value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+            >
+          </div>
+          <div class="booking__item">
+            <label for="Booking-email">{{ 'sections.party_booking.email' | t }} *</label>
+            <input
+              type="email"
+              id="Booking-email"
+              name="contact[email]"
+              autocomplete="email"
+              spellcheck="false"
+              autocapitalize="off"
+              required
+              value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+              {% if form.errors contains 'email' %}
+                aria-invalid="true"
+              {% endif %}
+            >
+          </div>
+          <div class="booking__item">
+            <label for="Booking-phone">{{ 'sections.party_booking.phone' | t }} *</label>
+            <input
+              type="tel"
+              id="Booking-phone"
+              name="contact[Phone / WhatsApp]"
+              autocomplete="tel"
+              required
+            >
+          </div>
+          <div class="booking__item">
+            <label for="Booking-language">{{ 'sections.party_booking.language' | t }}</label>
+            <select id="Booking-language" name="contact[Preferred language]">
+              <option value="English">English</option>
+              <option value="Spanish"{% if request.locale.iso_code == 'es' %} selected{% endif %}>Español</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="booking__group">
+        <legend class="booking__legend">{{ 'sections.party_booking.about_party' | t }}</legend>
+        <div class="booking__grid">
+          <div class="booking__item">
+            <label for="Booking-date">{{ 'sections.party_booking.date' | t }} *</label>
+            <input type="date" id="Booking-date" name="contact[Party date]" min="{{ today }}" required>
+          </div>
+          <div class="booking__item">
+            <label for="Booking-time">{{ 'sections.party_booking.time' | t }}</label>
+            <input type="time" id="Booking-time" name="contact[Start time]" step="900">
+            <span class="booking__hint">{{ 'sections.party_booking.time_hint' | t }}</span>
+          </div>
+          <div class="booking__item">
+            <label for="Booking-guests">{{ 'sections.party_booking.guests' | t }} *</label>
+            <select id="Booking-guests" name="contact[Number of guests]" required data-booking-guests>
+              <option value="" disabled selected>{{ 'sections.party_booking.choose' | t }}</option>
+              <option value="Up to 8" data-guests="8">{{ 'sections.party_booking.up_to_8' | t }}</option>
+              {%- for n in (9..12) -%}
+                <option value="{{ n }}" data-guests="{{ n }}">{{ n }}</option>
+              {%- endfor -%}
+              <option value="More than 12" data-guests="more">{{ 'sections.party_booking.more_than_12' | t }}</option>
+            </select>
+          </div>
+          <div class="booking__item">
+            <label for="Booking-ages">{{ 'sections.party_booking.ages' | t }} *</label>
+            <input
+              type="text"
+              id="Booking-ages"
+              name="contact[Guest ages]"
+              required
+              placeholder="{{ 'sections.party_booking.ages_placeholder' | t }}"
+            >
+          </div>
+          <div class="booking__item">
+            <label for="Booking-occasion">{{ 'sections.party_booking.occasion' | t }}</label>
+            <select id="Booking-occasion" name="contact[Occasion]">
+              <option value="Birthday">{{ 'sections.party_booking.occasion_birthday' | t }}</option>
+              <option value="Sleepover">{{ 'sections.party_booking.occasion_sleepover' | t }}</option>
+              <option value="Celebration">{{ 'sections.party_booking.occasion_celebration' | t }}</option>
+              <option value="Other">{{ 'sections.party_booking.occasion_other' | t }}</option>
+            </select>
+          </div>
+          <div class="booking__item">
+            <label for="Booking-name-child">{{ 'sections.party_booking.celebrating' | t }}</label>
+            <input type="text" id="Booking-name-child" name="contact[Who we're celebrating]">
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="booking__group">
+        <legend class="booking__legend">{{ 'sections.party_booking.where' | t }}</legend>
+        <div class="booking__grid">
+          <div class="booking__item">
+            <label for="Booking-venue">{{ 'sections.party_booking.venue' | t }} *</label>
+            <select id="Booking-venue" name="contact[Venue type]" required>
+              <option value="" disabled selected>{{ 'sections.party_booking.choose' | t }}</option>
+              <option value="At home">{{ 'sections.party_booking.venue_home' | t }}</option>
+              <option value="Booked venue">{{ 'sections.party_booking.venue_booked' | t }}</option>
+              <option value="Not sure yet">{{ 'sections.party_booking.venue_unsure' | t }}</option>
+            </select>
+          </div>
+          <div class="booking__item">
+            <label for="Booking-area">{{ 'sections.party_booking.area' | t }} *</label>
+            <input
+              type="text"
+              id="Booking-area"
+              name="contact[Town / area]"
+              required
+              placeholder="{{ 'sections.party_booking.area_placeholder' | t }}"
+            >
+            <span class="booking__hint">{{ 'sections.party_booking.area_hint' | t }}</span>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="booking__group">
+        <legend class="booking__legend">{{ 'sections.party_booking.anything_else' | t }}</legend>
+        <div class="booking__grid">
+          <div class="booking__item">
+            <label for="Booking-heard">{{ 'sections.party_booking.heard' | t }}</label>
+            <select id="Booking-heard" name="contact[How they heard about us]">
+              <option value="" selected>{{ 'sections.party_booking.choose' | t }}</option>
+              <option value="Instagram">Instagram</option>
+              <option value="Friend / word of mouth">{{ 'sections.party_booking.heard_friend' | t }}</option>
+              <option value="Been to a party">{{ 'sections.party_booking.heard_party' | t }}</option>
+              <option value="Google">Google</option>
+              <option value="Other">{{ 'sections.party_booking.occasion_other' | t }}</option>
+            </select>
+          </div>
+          <div class="booking__item booking__item--full">
+            <label for="Booking-message">{{ 'sections.party_booking.message' | t }}</label>
+            <textarea
+              id="Booking-message"
+              name="contact[body]"
+              placeholder="{{ 'sections.party_booking.message_placeholder' | t }}"
+            >
+              {{- form.body -}}
+            </textarea>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="booking__estimate" data-booking-estimate data-from-label="{{ 'sections.party_booking.from' | t }}" hidden>
+        <span>{{ 'sections.party_booking.estimate' | t }}</span>
+        <span class="booking__estimate-price" data-booking-estimate-price></span>
+        <span class="booking__hint" data-booking-estimate-note>{{ 'sections.party_booking.estimate_note' | t }}</span>
+        <span class="booking__hint" data-booking-estimate-large hidden>
+          {{- 'sections.party_booking.estimate_large' | t -}}
+        </span>
+      </div>
+      <input type="hidden" name="contact[Estimated price]" value="" data-booking-estimate-input>
+
+      <div class="contact__button">
+        <button type="submit" class="button">{{ 'sections.party_booking.send' | t }}</button>
+      </div>
+    {%- endform -%}
+  </div>
+</div>
+
+<script>
+  (function () {
+    var form = document.getElementById('PartyBookingForm');
+    if (!form) return;
+    var guests = form.querySelector('[data-booking-guests]');
+    var box = form.querySelector('[data-booking-estimate]');
+    var price = form.querySelector('[data-booking-estimate-price]');
+    var note = form.querySelector('[data-booking-estimate-note]');
+    var large = form.querySelector('[data-booking-estimate-large]');
+    var input = form.querySelector('[data-booking-estimate-input]');
+    var base = {{ section.settings.base_price | default: 360 }};
+    var included = {{ section.settings.included_guests | default: 8 }};
+    var extra = {{ section.settings.extra_guest_price | default: 45 }};
+
+    function update() {
+      var option = guests.options[guests.selectedIndex];
+      var count = option && option.dataset.guests;
+      if (!count) {
+        box.hidden = true;
+        input.value = '';
+        return;
+      }
+      box.hidden = false;
+      if (count === 'more') {
+        var minimum = base + (12 - included) * extra;
+        price.textContent = box.dataset.fromLabel + ' €' + minimum;
+        note.hidden = true;
+        large.hidden = false;
+        input.value = 'From €' + minimum + ' (more than 12 guests)';
+        return;
+      }
+      var total = base + Math.max(0, parseInt(count, 10) - included) * extra;
+      price.textContent = '€' + total;
+      note.hidden = false;
+      large.hidden = true;
+      input.value = '€' + total;
+    }
+
+    guests.addEventListener('change', update);
+    update();
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Party booking form",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "Book a charm bar party",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" }
+      ],
+      "default": "h1",
+      "label": "Heading size"
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Intro text"
+    },
+    {
+      "type": "header",
+      "content": "Pricing (used for the price estimate)"
+    },
+    {
+      "type": "number",
+      "id": "base_price",
+      "label": "Minimum spend (€)",
+      "default": 360
+    },
+    {
+      "type": "number",
+      "id": "included_guests",
+      "label": "Guests included in minimum spend",
+      "default": 8
+    },
+    {
+      "type": "number",
+      "id": "extra_guest_price",
+      "label": "Price per extra guest (€)",
+      "default": 45
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Colour scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "Party booking form"
+    }
+  ]
+}
+{% endschema %}
