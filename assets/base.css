@@ -3636,9 +3636,26 @@ details-disclosure > details {
   }
 }
 
-/* mica + bobble: language selector lives in the top bar on desktop; hide the duplicate in the header */
-@media screen and (min-width: 990px) {
-  .header__icons localization-form {
-    display: none;
-  }
+/* mica + bobble: flag language selector */
+.language-flag {
+  border-radius: 0.2rem;
+  box-shadow: 0 0 0 0.1rem rgba(var(--color-foreground), 0.15);
+  display: inline-flex;
+  flex-shrink: 0;
+  height: 1.6rem;
+  overflow: hidden;
+  width: 2.4rem;
+}
+
+.language-flag svg {
+  height: 100%;
+  width: 100%;
+}
+
+.localization-selector .language-flag {
+  margin-right: 0.6rem;
+}
+
+.disclosure__link .language-flag {
+  margin-right: 0.8rem;
 }
