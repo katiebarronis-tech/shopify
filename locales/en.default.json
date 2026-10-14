@@ -452,7 +452,8 @@
       "morning": "Morning",
       "afternoon": "Afternoon",
       "choose_session": "Please choose a morning or afternoon session.",
-      "more_than": "More than {{ count }}"
+      "more_than": "More than {{ count }}",
+      "choose_session_first": "Choose a session first"
     }
   },
   "localization": {
