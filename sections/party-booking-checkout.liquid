@@ -276,12 +276,14 @@
             </div>
             <div class="booking__item">
               <label for="Checkout-time-{{ section.id }}">{{ 'sections.party_booking.time' | t }}</label>
-              <input
-                type="time"
-                id="Checkout-time-{{ section.id }}"
-                step="900"
-                data-property="Start time"
-              >
+              <select id="Checkout-time-{{ section.id }}" data-property="Start time">
+                <option value="" selected>{{ 'sections.party_booking.choose' | t }}</option>
+                {%- for hour in (9..19) -%}
+                  {%- assign hh = hour | prepend: '0' | slice: -2, 2 -%}
+                  <option value="{{ hh }}:00">{{ hh }}:00</option>
+                  <option value="{{ hh }}:30">{{ hh }}:30</option>
+                {%- endfor -%}
+              </select>
               <span class="booking__hint">{{ 'sections.party_booking.time_hint' | t }}</span>
             </div>
             <div class="booking__item">
