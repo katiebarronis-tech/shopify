@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "general": {
     "password_page": {
@@ -443,8 +452,7 @@
       "morning": "Morning",
       "afternoon": "Afternoon",
       "choose_session": "Please choose a morning or afternoon session.",
-      "more_than": "More than {{ count }}",
-      "choose_session_first": "Choose a session first"
+      "more_than": "More than {{ count }}"
     }
   },
   "localization": {
