@@ -1,6 +1,6 @@
 {
   "sections": {
-    "soon": {
+    "coming_soon": {
       "type": "rich-text",
       "blocks": {
         "heading": {
@@ -44,6 +44,6 @@
     }
   },
   "order": [
-    "soon"
+    "coming_soon"
   ]
 }
