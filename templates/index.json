@@ -349,7 +349,8 @@
         "full_width": true,
         "padding_top": 40,
         "padding_bottom": 40
-      }
+      },
+      "disabled": true
     }
   },
   "order": [
