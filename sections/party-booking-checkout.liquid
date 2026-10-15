@@ -220,6 +220,8 @@
         data-extra-price="{{ extra_variant.price }}"
         data-included="{{ included }}"
         data-cart-add-url="{{ routes.cart_add_url }}.js"
+        data-cart-url="{{ routes.cart_url }}.js"
+        data-cart-update-url="{{ routes.cart_update_url }}.js"
         data-checkout-url="{{ routes.root_url | append: '/checkout' | replace: '//', '/' }}"
       >
         <script type="application/json" data-dates>
@@ -653,11 +655,32 @@
             submit.disabled = true;
             submit.setAttribute('aria-busy', 'true');
 
-            fetch(form.dataset.cartAddUrl, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-              body: JSON.stringify({ items: items }),
-            })
+            var jsonHeaders = { 'Content-Type': 'application/json', Accept: 'application/json' };
+
+            // Remove any earlier, unpaid party booking from the cart so a retry doesn't ask for 2 of a 1-off session.
+            fetch(form.dataset.cartUrl, { headers: { Accept: 'application/json' } })
+              .then(function (response) {
+                return response.json();
+              })
+              .then(function (cart) {
+                var updates = {};
+                cart.items.forEach(function (line) {
+                  if (line.properties && line.properties['Party date']) updates[line.key] = 0;
+                });
+                if (!Object.keys(updates).length) return null;
+                return fetch(form.dataset.cartUpdateUrl, {
+                  method: 'POST',
+                  headers: jsonHeaders,
+                  body: JSON.stringify({ updates: updates }),
+                });
+              })
+              .then(function () {
+                return fetch(form.dataset.cartAddUrl, {
+                  method: 'POST',
+                  headers: jsonHeaders,
+                  body: JSON.stringify({ items: items }),
+                });
+              })
               .then(function (response) {
                 if (response.status === 422) throw new Error('unavailable');
                 if (!response.ok) throw new Error('cart');
