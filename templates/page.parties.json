@@ -179,7 +179,7 @@
           "type": "column",
           "settings": {
             "title": "Set-up",
-            "text": "<p>We arrive <strong>[To confirm]</strong> minutes before the start to set up, and pack everything away afterwards.</p>",
+            "text": "<p>We arrive 30 minutes before the start to set up, and pack everything away afterwards.</p>",
             "link_label": "",
             "link": ""
           }
