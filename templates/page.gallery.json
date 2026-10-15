@@ -177,12 +177,51 @@
         "padding_top": 40,
         "padding_bottom": 40
       }
+    },
+    "collage3": {
+      "type": "collage",
+      "blocks": {
+        "i0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/mb-hands-pliers.jpg"
+          }
+        },
+        "i1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/mb-letter-board.jpg"
+          }
+        },
+        "i2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/mb-not-your-usual-charm-bar.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "i0",
+        "i1",
+        "i2"
+      ],
+      "settings": {
+        "heading": "",
+        "heading_size": "h1",
+        "desktop_layout": "left",
+        "mobile_layout": "collage",
+        "card_styles": "none",
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
     "intro",
     "collage1",
     "collage2",
+    "collage3",
     "cta"
   ]
 }
