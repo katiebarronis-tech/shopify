@@ -3,14 +3,6 @@
     "soon": {
       "type": "rich-text",
       "blocks": {
-        "caption": {
-          "type": "caption",
-          "settings": {
-            "caption": "Shop",
-            "text_style": "subtitle",
-            "text_size": "medium"
-          }
-        },
         "heading": {
           "type": "heading",
           "settings": {
@@ -37,7 +29,6 @@
         }
       },
       "block_order": [
-        "caption",
         "heading",
         "text",
         "button"
